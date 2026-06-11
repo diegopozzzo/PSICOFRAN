@@ -25,7 +25,13 @@ export default function Talleres() {
 
   const inscribir = (e) => {
     e.preventDefault()
-    actions.addRegistration({ eventId: sel.id, evento: sel.titulo, ...form })
+    actions.addRegistration({
+      eventId: sel.id,
+      evento: sel.titulo,
+      tipo: sel.tipo,
+      fechaEvento: `${fmtFecha(sel.fecha)} ${fmtHora(sel.fecha)}`,
+      ...form,
+    })
     setOk(true)
   }
 

@@ -132,10 +132,30 @@ export function useDb() {
   )
 }
 
+/* Envía los datos a Google Sheets vía las funciones serverless de Vercel.
+   Si la API no está disponible (entorno local o GitHub Pages), falla en silencio:
+   la reserva igual queda guardada en el navegador. */
+function syncToSheets(endpoint, payload) {
+  fetch(`/api/${endpoint}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  }).catch(() => {})
+}
+
 export const actions = {
   addBooking(data) {
     const booking = { id: uid(), estado: 'pendiente', creadaEn: new Date().toISOString(), ...data }
     persist({ ...db, bookings: [...db.bookings, booking] })
+    syncToSheets('reserva', {
+      nombre: booking.nombre,
+      email: booking.email,
+      telefono: booking.telefono,
+      servicio: booking.servicio,
+      fecha: booking.fecha,
+      hora: booking.hora,
+      motivo: booking.motivo,
+    })
     return booking
   },
   setBookingStatus(id, estado) {
@@ -161,6 +181,14 @@ export const actions = {
   addRegistration(data) {
     const reg = { id: uid(), creadaEn: new Date().toISOString(), ...data }
     persist({ ...db, registrations: [...db.registrations, reg] })
+    syncToSheets('inscripcion', {
+      nombre: reg.nombre,
+      email: reg.email,
+      telefono: reg.telefono,
+      evento: reg.evento,
+      tipo: reg.tipo,
+      fechaEvento: reg.fechaEvento,
+    })
     return reg
   },
   deleteRegistration(id) {
