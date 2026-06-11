@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-cream: #fdf8f5;
+  --color-blush-50: #fdf1f5;
+  --color-blush-100: #fae2eb;
+  --color-blush-200: #f4c9da;
+  --color-blush-300: #eba6c2;
+  --color-blush-400: #de7da4;
+  --color-blush-500: #cc5a8a;
+  --color-blush-600: #ad4070;
+  --color-espresso-50: #f8f1f1;
+  --color-espresso-100: #f0dfe1;
+  --color-espresso-400: #9a767f;
+  --color-espresso-500: #7c5761;
+  --color-espresso-700: #553941;
+  --color-espresso-900: #362227;
+  --color-sage-100: #ece8df;
+  --color-sage-400: #a59882;
+  --color-sage-600: #7d6f58;
+
+  --ease-soft: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: var(--color-espresso-900);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Película de grano sutil, fija y sin interferir con clics */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--color-blush-200);
+  color: var(--color-espresso-900);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(3.5rem);
+  filter: blur(6px);
+  transition:
+    opacity 0.9s var(--ease-soft),
+    transform 0.9s var(--ease-soft),
+    filter 0.9s var(--ease-soft);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.5;
+}
