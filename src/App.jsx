@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
+import WhatsAppFloat from './components/WhatsAppFloat'
 import Home from './pages/Home'
 import Reservar from './pages/Reservar'
 import Talleres from './pages/Talleres'
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/links" element={<Links />} />
       </Routes>
       {!standalone && <Footer />}
+      {!standalone && <WhatsAppFloat />}
     </div>
   )
 }
