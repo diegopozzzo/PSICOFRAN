@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Reveal from './Reveal'
 import { Eyebrow, Icon } from './ui'
 
-const items = [
+export const faqItems = [
   {
     q: '¿Cómo es la primera sesión?',
     a: 'Es una consulta de encuadre gratuita: conversamos sobre tu situación, resolvemos dudas y vemos juntas si el acompañamiento es el adecuado para ti. Sin presión ni compromiso.',
@@ -34,7 +34,9 @@ function Item({ q, a, open, onToggle }) {
         className="flex w-full items-center justify-between gap-4 py-6 text-left cursor-pointer"
         aria-expanded={open}
       >
-        <span className={`text-sm font-medium transition-colors duration-500 sm:text-base ${open ? 'text-espresso-900' : 'text-espresso-700'}`}>
+        <span
+          className={`text-sm font-medium transition-colors duration-500 sm:text-base ${open ? 'text-espresso-900' : 'text-espresso-700'}`}
+        >
           {q}
         </span>
         <span
@@ -58,22 +60,25 @@ function Item({ q, a, open, onToggle }) {
   )
 }
 
-export default function FAQ() {
+/** embedded=true omite el encabezado (para la página /faq) */
+export default function FAQ({ embedded = false }) {
   const [open, setOpen] = useState(0)
 
   return (
-    <section id="faq" className="scroll-mt-28 px-4 py-24 sm:py-32">
+    <section className={`px-4 ${embedded ? 'pb-8 pt-0' : 'py-24 sm:py-32'}`}>
       <div className="mx-auto max-w-3xl">
-        <Reveal className="text-center">
-          <Eyebrow tone="sage">
-            <Icon.Sparkle className="h-3 w-3" /> Preguntas frecuentes
-          </Eyebrow>
-          <h2 className="mt-6 font-serif text-4xl leading-tight tracking-tight text-espresso-900 sm:text-5xl">
-            Todo lo que necesitas <em className="font-light text-blush-500">saber</em>
-          </h2>
-        </Reveal>
-        <Reveal delay={120} className="mt-12">
-          {items.map((item, i) => (
+        {!embedded && (
+          <Reveal className="text-center">
+            <Eyebrow tone="sage">
+              <Icon.Sparkle className="h-3 w-3" /> Preguntas frecuentes
+            </Eyebrow>
+            <h2 className="mt-6 font-serif text-4xl leading-tight tracking-tight text-espresso-900 sm:text-5xl">
+              Todo lo que necesitas <em className="font-light text-blush-500">saber</em>
+            </h2>
+          </Reveal>
+        )}
+        <Reveal delay={embedded ? 0 : 120} className={embedded ? '' : 'mt-12'}>
+          {faqItems.map((item, i) => (
             <Item
               key={item.q}
               {...item}
