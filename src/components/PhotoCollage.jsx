@@ -1,9 +1,8 @@
-import Reveal from './Reveal'
 import { fotos } from '../lib/fotos'
 
 /**
- * Collage superpuesto: 4 esquinas + centro dominante (referencia del usuario).
- * Marcos altos + object-position por foto para no recortar rostros.
+ * Collage superpuesto: 4 esquinas + centro dominante.
+ * Sin Reveal: debe verse al instante al entrar a la página.
  */
 const tiles = [
   {
@@ -42,22 +41,28 @@ const tiles = [
 function CollageFrame({ src, alt, pos, frame }) {
   return (
     <div
-      className={`absolute overflow-hidden rounded-2xl bg-cream ring-1 ring-espresso-900/[0.06] ${frame}`}
+      className={`absolute overflow-hidden rounded-2xl bg-blush-50 ring-1 ring-espresso-900/[0.08] ${frame}`}
     >
-      <img src={src} alt={alt} className={`h-full w-full object-cover ${pos}`} loading="lazy" />
+      <img
+        src={src}
+        alt={alt}
+        className={`h-full w-full object-cover ${pos}`}
+        loading="eager"
+        decoding="async"
+      />
     </div>
   )
 }
 
 export default function PhotoCollage({ className = '' }) {
   return (
-    <Reveal className={className}>
-      <div className="relative mx-auto aspect-square w-full max-w-[280px] sm:max-w-[320px]">
+    <div className={`w-full ${className}`}>
+      <div className="relative mx-auto aspect-square w-full min-h-[260px] max-w-[300px] sm:max-w-[360px]">
         {tiles.map((t) => (
           <CollageFrame key={t.src} {...t} />
         ))}
       </div>
-    </Reveal>
+    </div>
   )
 }
 
@@ -69,7 +74,7 @@ export function HeroPhoto({ className = '' }) {
         <img
           src={fotos.hero}
           alt="Francis Landeo, psicóloga clínica especializada en crianza consciente"
-          className="aspect-[4/5] w-full max-w-[380px] object-contain object-center sm:max-w-[420px]"
+          className="aspect-[4/5] w-full max-w-[380px] object-cover object-[center_12%] sm:max-w-[420px]"
           loading="eager"
         />
       </div>

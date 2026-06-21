@@ -31,7 +31,7 @@ export default function SobreMi() {
             </Reveal>
           </div>
 
-          <PhotoCollage className="mx-auto lg:mx-0 lg:ml-auto" />
+          <PhotoCollage className="mx-auto w-full max-w-[360px] lg:mx-0 lg:ml-auto" />
         </div>
       </section>
 
