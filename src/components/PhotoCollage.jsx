@@ -1,31 +1,60 @@
 import Reveal from './Reveal'
 import { fotos } from '../lib/fotos'
 
-const strip = [
-  { src: fotos.escritorio, alt: 'Francis en su espacio de consulta', pos: 'object-[center_20%]' },
-  { src: fotos.tablet, alt: 'Francis con tablet', pos: 'object-top' },
-  { src: fotos.retrato, alt: 'Francis Landeo, retrato profesional', pos: 'object-[center_15%]' },
+/**
+ * Collage superpuesto: 4 esquinas + centro dominante (referencia del usuario).
+ * Marcos altos + object-position por foto para no recortar rostros.
+ */
+const tiles = [
+  {
+    src: fotos.perfil,
+    alt: 'Francis Landeo, psicóloga clínica',
+    pos: 'object-[center_22%]',
+    frame: 'left-0 top-0 z-[1] h-[44%] w-[47%]',
+  },
+  {
+    src: fotos.tablet,
+    alt: 'Francis Landeo con tablet',
+    pos: 'object-[center_18%]',
+    frame: 'bottom-0 left-0 z-[1] h-[44%] w-[47%]',
+  },
+  {
+    src: fotos.escritorio,
+    alt: 'Francis en su espacio de consulta',
+    pos: 'object-[center_35%]',
+    frame: 'right-0 top-[2%] z-[1] h-[42%] w-[45%]',
+  },
+  {
+    src: fotos.retrato,
+    alt: 'Francis Landeo, retrato profesional',
+    pos: 'object-[center_22%]',
+    frame: 'bottom-0 right-0 z-[1] h-[44%] w-[45%]',
+  },
+  {
+    src: fotos.hero,
+    alt: 'Francis Landeo con libros de psicología',
+    pos: 'object-[center_12%]',
+    frame:
+      'left-1/2 top-1/2 z-[3] h-[56%] w-[56%] -translate-x-1/2 -translate-y-1/2 shadow-[0_20px_50px_-12px_rgba(54,34,39,0.35)] ring-2 ring-white',
+  },
 ]
 
-/** Collage compacto: franja horizontal de 3 fotos, baja altura */
-export default function PhotoCollage() {
+function CollageFrame({ src, alt, pos, frame }) {
   return (
-    <Reveal>
-      <div className="mx-auto flex max-w-2xl gap-2 sm:max-w-3xl sm:gap-2.5">
-        {strip.map((f, i) => (
-          <div
-            key={f.src}
-            className={`relative flex-1 overflow-hidden ring-1 ring-espresso-900/[0.06] ${
-              i === 0 ? 'rounded-l-2xl' : i === strip.length - 1 ? 'rounded-r-2xl' : ''
-            }`}
-          >
-            <img
-              src={f.src}
-              alt={f.alt}
-              className={`h-24 w-full object-cover sm:h-32 ${f.pos}`}
-              loading="lazy"
-            />
-          </div>
+    <div
+      className={`absolute overflow-hidden rounded-2xl bg-cream ring-1 ring-espresso-900/[0.06] ${frame}`}
+    >
+      <img src={src} alt={alt} className={`h-full w-full object-cover ${pos}`} loading="lazy" />
+    </div>
+  )
+}
+
+export default function PhotoCollage({ className = '' }) {
+  return (
+    <Reveal className={className}>
+      <div className="relative mx-auto aspect-square w-full max-w-[280px] sm:max-w-[320px]">
+        {tiles.map((t) => (
+          <CollageFrame key={t.src} {...t} />
         ))}
       </div>
     </Reveal>
@@ -36,11 +65,11 @@ export function HeroPhoto({ className = '' }) {
   return (
     <div className={`relative ${className}`}>
       <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-blush-200/60 via-blush-100/30 to-transparent blur-sm" />
-      <div className="relative overflow-hidden rounded-[2rem] bg-white p-1.5 shadow-[0_28px_70px_-30px_rgba(54,34,39,0.35)] ring-1 ring-espresso-900/[0.07]">
+      <div className="relative overflow-hidden rounded-[2rem] bg-cream p-1.5 shadow-[0_28px_70px_-30px_rgba(54,34,39,0.35)] ring-1 ring-espresso-900/[0.07]">
         <img
           src={fotos.hero}
           alt="Francis Landeo, psicóloga clínica especializada en crianza consciente"
-          className="aspect-[4/5] w-full max-w-[380px] object-cover object-[center_12%] sm:max-w-[420px]"
+          className="aspect-[4/5] w-full max-w-[380px] object-contain object-center sm:max-w-[420px]"
           loading="eager"
         />
       </div>

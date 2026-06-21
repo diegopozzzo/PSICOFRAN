@@ -1,27 +1,37 @@
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
-import PageHero from '../components/PageHero'
 import PhotoCollage from '../components/PhotoCollage'
-import { Bezel, PillButton, Icon } from '../components/ui'
+import { Eyebrow, Bezel, PillButton, Icon } from '../components/ui'
 import { credenciales, sobreMi } from '../lib/content'
 
 export default function SobreMi() {
   return (
     <main>
-      <PageHero
-        compact
-        eyebrow={<><Icon.Sparkle className="h-3 w-3" /> Sobre mí</>}
-        title={
-          <>
-            Hola, soy <em className="font-light text-blush-500">Francis</em>
-          </>
-        }
-        lead="Mamá, psicóloga clínica y psicoterapeuta DBT en formación. Acompaño familias desde la experiencia, no desde la perfección."
-      />
+      {/* Intro + collage lado a lado */}
+      <section className="relative overflow-hidden px-4 pb-10 pt-28 sm:pb-14 sm:pt-32">
+        <div className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-blush-200/40 blur-[90px]" />
 
-      <section className="px-4 pb-8 sm:pb-10">
-        <div className="mx-auto max-w-6xl">
-          <PhotoCollage />
+        <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="text-center lg:text-left">
+            <Reveal>
+              <Eyebrow tone="sage">
+                <Icon.Sparkle className="h-3 w-3" /> Sobre mí
+              </Eyebrow>
+            </Reveal>
+            <Reveal delay={80}>
+              <h1 className="mt-5 font-serif text-4xl leading-[1.08] tracking-tight text-espresso-900 sm:text-5xl">
+                Hola, soy <em className="font-light text-blush-500">Francis</em>
+              </h1>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-espresso-500 lg:mx-0">
+                Mamá, psicóloga clínica y psicoterapeuta DBT en formación. Acompaño familias desde
+                la experiencia, no desde la perfección.
+              </p>
+            </Reveal>
+          </div>
+
+          <PhotoCollage className="mx-auto lg:mx-0 lg:ml-auto" />
         </div>
       </section>
 
