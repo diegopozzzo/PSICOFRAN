@@ -1,47 +1,46 @@
 import { fotos } from '../lib/fotos'
 
 /**
- * Collage superpuesto: 4 esquinas + centro dominante.
- * Sin Reveal: debe verse al instante al entrar a la página.
+ * Collage en cuadrícula (sin superposición).
+ * Mismo orden visual: esquinas + centro; sentada al centro (hero solo en Inicio).
  */
 const tiles = [
   {
     src: fotos.perfil,
     alt: 'Francis Landeo, psicóloga clínica',
     pos: 'object-[center_22%]',
-    frame: 'left-0 top-0 z-[1] h-[44%] w-[47%]',
-  },
-  {
-    src: fotos.tablet,
-    alt: 'Francis Landeo con tablet',
-    pos: 'object-[center_18%]',
-    frame: 'bottom-0 left-0 z-[1] h-[44%] w-[47%]',
+    className: 'col-start-1 row-start-1 aspect-[4/5]',
   },
   {
     src: fotos.escritorio,
     alt: 'Francis en su espacio de consulta',
     pos: 'object-[center_35%]',
-    frame: 'right-0 top-[2%] z-[1] h-[42%] w-[45%]',
+    className: 'col-start-2 row-start-1 aspect-[4/5]',
+  },
+  {
+    src: fotos.sentada,
+    alt: 'Francis Landeo en su consultorio',
+    pos: 'object-[center_20%]',
+    className: 'col-span-2 row-start-2 aspect-[5/3]',
+  },
+  {
+    src: fotos.tablet,
+    alt: 'Francis Landeo con tablet',
+    pos: 'object-[center_18%]',
+    className: 'col-start-1 row-start-3 aspect-[4/5]',
   },
   {
     src: fotos.retrato,
     alt: 'Francis Landeo, retrato profesional',
     pos: 'object-[center_22%]',
-    frame: 'bottom-0 right-0 z-[1] h-[44%] w-[45%]',
-  },
-  {
-    src: fotos.hero,
-    alt: 'Francis Landeo con libros de psicología',
-    pos: 'object-[center_12%]',
-    frame:
-      'left-1/2 top-1/2 z-[3] h-[56%] w-[56%] -translate-x-1/2 -translate-y-1/2 shadow-[0_20px_50px_-12px_rgba(54,34,39,0.35)] ring-2 ring-white',
+    className: 'col-start-2 row-start-3 aspect-[4/5]',
   },
 ]
 
-function CollageFrame({ src, alt, pos, frame }) {
+function CollageFrame({ src, alt, pos, className }) {
   return (
     <div
-      className={`absolute overflow-hidden rounded-2xl bg-blush-50 ring-1 ring-espresso-900/[0.08] ${frame}`}
+      className={`overflow-hidden rounded-2xl bg-blush-50 ring-1 ring-espresso-900/[0.08] ${className}`}
     >
       <img
         src={src}
@@ -57,7 +56,7 @@ function CollageFrame({ src, alt, pos, frame }) {
 export default function PhotoCollage({ className = '' }) {
   return (
     <div className={`w-full ${className}`}>
-      <div className="relative mx-auto aspect-square w-full min-h-[260px] max-w-[300px] sm:max-w-[360px]">
+      <div className="mx-auto grid w-full max-w-[300px] grid-cols-2 gap-2 sm:max-w-[360px] sm:gap-2.5">
         {tiles.map((t) => (
           <CollageFrame key={t.src} {...t} />
         ))}
