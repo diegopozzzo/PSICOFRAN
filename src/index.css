@@ -72,37 +72,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0.5;
 }
 
-/* ── Orb de respiración ── */
-.orb-idle {
-  animation: orb-idle 5s ease-in-out infinite;
-}
-
-@keyframes orb-idle {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-.orb-ring-pulse {
-  animation: orb-ring 4.5s ease-in-out infinite;
-}
-
-@keyframes orb-ring {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.45;
-  }
-  50% {
-    transform: scale(1.03);
-    opacity: 1;
-  }
-}
-
 /* ── WhatsApp flotante ── */
 .wa-float::before {
   content: "";
@@ -130,8 +99,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .orb-idle,
-  .orb-ring-pulse,
   .wa-float::before,
   .page-enter {
     animation: none !important;

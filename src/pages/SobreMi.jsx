@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
+import PhotoCollage from '../components/PhotoCollage'
 import { Bezel, PillButton, Icon } from '../components/ui'
 import { credenciales, sobreMi } from '../lib/content'
 
@@ -16,6 +17,12 @@ export default function SobreMi() {
         }
         lead="Mamá, psicóloga clínica y psicoterapeuta DBT en formación. Acompaño familias desde la experiencia, no desde la perfección."
       />
+
+      <section className="px-4 pb-12 sm:pb-16">
+        <div className="mx-auto max-w-6xl">
+          <PhotoCollage />
+        </div>
+      </section>
 
       <section className="px-4 pb-16 sm:pb-24">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-start">

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Reveal from '../components/Reveal'
 import { Eyebrow, Bezel, PillButton, Field, Modal, Icon } from '../components/ui'
-import { useDb, actions, fmtFecha, fmtHora, fmtPrecio } from '../lib/store'
+import { useDb, actions, fmtFecha, fmtHora } from '../lib/store'
 
 export default function Talleres() {
   const { events, registrations } = useDb()
@@ -85,19 +85,14 @@ export default function Talleres() {
               <Reveal key={ev.id} delay={(i % 3) * 90}>
                 <Bezel className="h-full">
                   <div className="flex h-full flex-col rounded-[calc(2rem-0.375rem)] p-7">
-                    <div className="flex items-center justify-between">
-                      <Eyebrow tone={ev.tipo === 'webinar' ? 'sage' : 'blush'}>
-                        {ev.tipo === 'webinar' ? (
-                          <Icon.Video className="h-3 w-3" />
-                        ) : (
-                          <Icon.Users className="h-3 w-3" />
-                        )}
-                        {ev.tipo}
-                      </Eyebrow>
-                      <span className="text-sm font-semibold text-espresso-900">
-                        {fmtPrecio(ev.precio)}
-                      </span>
-                    </div>
+                    <Eyebrow tone={ev.tipo === 'webinar' ? 'sage' : 'blush'}>
+                      {ev.tipo === 'webinar' ? (
+                        <Icon.Video className="h-3 w-3" />
+                      ) : (
+                        <Icon.Users className="h-3 w-3" />
+                      )}
+                      {ev.tipo}
+                    </Eyebrow>
                     <h3 className="mt-5 font-serif text-xl leading-snug text-espresso-900">
                       {ev.titulo}
                     </h3>
@@ -150,7 +145,7 @@ export default function Talleres() {
             <Eyebrow tone={sel.tipo === 'webinar' ? 'sage' : 'blush'}>{sel.tipo}</Eyebrow>
             <h2 className="mt-4 font-serif text-2xl leading-snug text-espresso-900">{sel.titulo}</h2>
             <p className="mt-2 text-sm capitalize text-espresso-500">
-              {fmtFecha(sel.fecha)} · {fmtHora(sel.fecha)} · {fmtPrecio(sel.precio)}
+              {fmtFecha(sel.fecha)} · {fmtHora(sel.fecha)}
             </p>
             <div className="mt-7 grid gap-4">
               <Field

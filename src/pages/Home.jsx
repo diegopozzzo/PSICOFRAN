@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
-import BreathingOrb from '../components/BreathingOrb'
+import { HeroPhoto } from '../components/PhotoCollage'
 import { Eyebrow, Bezel, PillButton, Icon } from '../components/ui'
-import { useDb, fmtFecha, fmtHora, fmtPrecio } from '../lib/store'
+import { useDb, fmtFecha, fmtHora } from '../lib/store'
 import { exploreCards } from '../lib/content'
 
 export default function Home() {
@@ -13,59 +13,62 @@ export default function Home() {
 
   return (
     <main className="overflow-x-clip">
-      {/* Hero */}
-      <section className="relative flex min-h-[100dvh] flex-col justify-center px-4 pb-16 pt-28 sm:pt-32">
+      {/* Hero con foto */}
+      <section className="relative px-4 pb-12 pt-24 sm:pb-16 sm:pt-28">
         <div className="pointer-events-none absolute -top-24 right-[-8%] h-[28rem] w-[28rem] rounded-full bg-blush-300/35 blur-[110px]" />
-        <div className="pointer-events-none absolute bottom-20 left-[-10%] h-[22rem] w-[22rem] rounded-full bg-blush-100 blur-[90px]" />
+        <div className="pointer-events-none absolute bottom-10 left-[-10%] h-[22rem] w-[22rem] rounded-full bg-blush-100 blur-[90px]" />
 
-        <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <div className="order-2 text-center lg:order-1 lg:text-left">
+        <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="text-center lg:text-left">
             <Reveal>
               <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-[11px] font-semibold tracking-wide text-blush-600 shadow-sm ring-1 ring-blush-200/80 backdrop-blur-sm">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-blush-500" />
                 Psicóloga clínica · Lima, Perú
               </span>
             </Reveal>
-            <Reveal delay={100}>
-              <h1 className="mt-7 font-serif text-[clamp(2.4rem,6vw,4.75rem)] leading-[1.05] tracking-tight text-espresso-900">
+            <Reveal delay={80}>
+              <h1 className="mt-5 font-serif text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1.06] tracking-tight text-espresso-900 sm:mt-6">
                 Criar con{' '}
                 <em className="font-light text-blush-500">consciencia,</em>
                 <br />
                 vivir en calma.
               </h1>
             </Reveal>
-            <Reveal delay={200}>
-              <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-espresso-500 sm:text-lg lg:mx-0">
-                Soy Francis Landeo. Te acompaño en la crianza con herramientas reales, calidez y un
-                enfoque basado en evidencia.
-              </p>
-            </Reveal>
-            <Reveal delay={300}>
-              <div className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start">
+
+            {/* CTA más arriba, justo después del título */}
+            <Reveal delay={140}>
+              <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
                 <Link to="/reservar">
-                  <PillButton variant="primary">Reservar primera cita</PillButton>
+                  <PillButton variant="blush">Agendar mi cita</PillButton>
                 </Link>
                 <Link to="/servicios">
                   <PillButton variant="ghost">Conocer servicios</PillButton>
                 </Link>
               </div>
             </Reveal>
+
+            <Reveal delay={220}>
+              <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-espresso-500 sm:text-lg lg:mx-0">
+                Soy Francis Landeo. Te acompaño en la crianza con herramientas reales, calidez y un
+                enfoque basado en evidencia.
+              </p>
+            </Reveal>
           </div>
 
-          <Reveal delay={150} className="order-1 flex justify-center lg:order-2">
-            <BreathingOrb />
+          <Reveal delay={120} className="flex justify-center lg:justify-end">
+            <HeroPhoto />
           </Reveal>
         </div>
       </section>
 
       {/* Explorar */}
-      <section className="px-4 py-20 sm:py-28">
+      <section className="px-4 py-16 sm:py-24">
         <div className="mx-auto max-w-6xl">
-          <Reveal className="mb-12 text-center">
+          <Reveal className="mb-10 text-center">
             <Eyebrow tone="sage">
               <Icon.Sparkle className="h-3 w-3" /> Explora
             </Eyebrow>
-            <h2 className="mt-5 font-serif text-3xl text-espresso-900 sm:text-4xl">
+            <h2 className="mt-4 font-serif text-3xl text-espresso-900 sm:text-4xl">
               Todo en su <em className="font-light text-blush-500">propio espacio</em>
             </h2>
           </Reveal>
@@ -76,17 +79,17 @@ export default function Home() {
                 <Link to={card.to} className="group block h-full">
                   <Bezel className="h-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:-translate-y-1">
                     <div
-                      className={`flex h-full min-h-[140px] items-center gap-5 rounded-[calc(2rem-0.375rem)] bg-gradient-to-br ${card.gradient} p-7 sm:p-8`}
+                      className={`flex h-full min-h-[130px] items-center gap-5 rounded-[calc(2rem-0.375rem)] bg-gradient-to-br ${card.gradient} p-6 sm:p-7`}
                     >
-                      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/70 text-blush-500 shadow-sm ring-1 ring-white/80 transition-transform duration-500 group-hover:scale-105">
-                        <card.icon className="h-6 w-6" />
+                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/70 text-blush-500 shadow-sm ring-1 ring-white/80 transition-transform duration-500 group-hover:scale-105">
+                        <card.icon className="h-5 w-5" />
                       </span>
                       <div className="flex-1">
-                        <h3 className="font-serif text-2xl text-espresso-900">{card.titulo}</h3>
+                        <h3 className="font-serif text-xl text-espresso-900 sm:text-2xl">{card.titulo}</h3>
                         <p className="mt-1 text-sm text-espresso-500">{card.desc}</p>
                       </div>
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-espresso-900/5 text-espresso-500 transition-all duration-500 group-hover:translate-x-0.5 group-hover:bg-espresso-900 group-hover:text-cream">
-                        <Icon.Arrow className="h-4 w-4" />
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-espresso-900/5 text-espresso-500 transition-all duration-500 group-hover:translate-x-0.5 group-hover:bg-espresso-900 group-hover:text-cream">
+                        <Icon.Arrow className="h-3.5 w-3.5" />
                       </span>
                     </div>
                   </Bezel>
@@ -97,9 +100,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Próximo evento (solo uno) */}
       {proximo && (
-        <section className="px-4 pb-20 sm:pb-28">
+        <section className="px-4 pb-16 sm:pb-24">
           <div className="mx-auto max-w-3xl">
             <Reveal>
               <Bezel>
@@ -109,7 +111,7 @@ export default function Home() {
                     {proximo.titulo}
                   </h3>
                   <p className="mt-3 text-sm capitalize text-cream/55">
-                    {fmtFecha(proximo.fecha)} · {fmtHora(proximo.fecha)} · {fmtPrecio(proximo.precio)}
+                    {fmtFecha(proximo.fecha)} · {fmtHora(proximo.fecha)}
                   </p>
                   <div className="mt-7">
                     <Link to="/talleres">
@@ -123,19 +125,13 @@ export default function Home() {
         </section>
       )}
 
-      {/* Cita */}
-      <section className="px-4 pb-24 sm:pb-32">
+      <section className="px-4 pb-20 sm:pb-28">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <p className="font-serif text-2xl leading-snug text-espresso-900 sm:text-3xl">
               “Criar niños que no tengan que{' '}
               <em className="text-blush-500">recuperarse de su infancia</em> para ser felices.”
             </p>
-            <div className="mt-10">
-              <Link to="/reservar">
-                <PillButton variant="blush">Agendar mi consulta gratuita</PillButton>
-              </Link>
-            </div>
           </Reveal>
         </div>
       </section>

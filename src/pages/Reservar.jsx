@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import Reveal from '../components/Reveal'
 import { Eyebrow, Bezel, PillButton, Field, TextArea, Icon } from '../components/ui'
-import { useDb, actions, takenSlots, fmtPrecio } from '../lib/store'
+import { useDb, actions, takenSlots } from '../lib/store'
 
 const MESES = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -180,14 +180,9 @@ export default function Reservar() {
                           : 'bg-cream ring-espresso-900/10 hover:ring-blush-300'
                       }`}
                     >
-                      <div className="flex items-start justify-between gap-3">
-                        <h3 className="font-serif text-lg leading-snug text-espresso-900">
+                      <h3 className="font-serif text-lg leading-snug text-espresso-900">
                           {s.nombre}
                         </h3>
-                        <span className="shrink-0 rounded-full bg-white px-3 py-1 text-xs font-semibold text-espresso-700 ring-1 ring-espresso-900/10">
-                          {fmtPrecio(s.precio)}
-                        </span>
-                      </div>
                       <p className="mt-2.5 text-sm leading-relaxed text-espresso-500">{s.desc}</p>
                       <p className="mt-4 flex items-center gap-3 text-xs text-espresso-400">
                         <span className="inline-flex items-center gap-1">
@@ -258,7 +253,7 @@ export default function Reservar() {
                   <div className="mb-8 rounded-3xl bg-blush-50 p-5 ring-1 ring-blush-200">
                     <p className="font-serif text-lg text-espresso-900">{service.nombre}</p>
                     <p className="mt-1 text-sm capitalize text-espresso-500">
-                      {fechaLegible} · {hora} · {fmtPrecio(service.precio)}
+                      {fechaLegible} · {hora}
                     </p>
                   </div>
                   <div className="grid gap-4">

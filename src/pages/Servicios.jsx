@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
 import { Eyebrow, Bezel, PillButton, Icon } from '../components/ui'
-import { useDb, fmtPrecio } from '../lib/store'
+import { useDb } from '../lib/store'
 import { ayudas } from '../lib/content'
 
 export default function Servicios() {
@@ -33,8 +33,7 @@ export default function Servicios() {
                     {s.nombre}
                   </h2>
                   <p className="mt-4 flex-1 text-sm leading-relaxed text-espresso-500">{s.desc}</p>
-                  <div className="mt-8 flex items-center justify-between border-t border-espresso-900/8 pt-5">
-                    <span className="font-serif text-2xl text-espresso-900">{fmtPrecio(s.precio)}</span>
+                  <div className="mt-8 flex justify-end border-t border-espresso-900/8 pt-5">
                     <Link to="/reservar">
                       <PillButton variant="blush">Agendar</PillButton>
                     </Link>
