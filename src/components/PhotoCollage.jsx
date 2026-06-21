@@ -1,55 +1,32 @@
 import Reveal from './Reveal'
 import { fotos } from '../lib/fotos'
 
+const strip = [
+  { src: fotos.escritorio, alt: 'Francis en su espacio de consulta', pos: 'object-[center_20%]' },
+  { src: fotos.tablet, alt: 'Francis con tablet', pos: 'object-top' },
+  { src: fotos.retrato, alt: 'Francis Landeo, retrato profesional', pos: 'object-[center_15%]' },
+]
+
+/** Collage compacto: franja horizontal de 3 fotos, baja altura */
 export default function PhotoCollage() {
   return (
     <Reveal>
-      <div className="grid grid-cols-6 gap-3 sm:gap-4">
-        {/* Imagen principal */}
-        <div className="col-span-6 overflow-hidden rounded-[1.75rem] ring-1 ring-espresso-900/[0.06] sm:col-span-4 sm:row-span-2">
-          <img
-            src={fotos.escritorio}
-            alt="Francis Landeo en su espacio de consulta"
-            className="h-full min-h-[220px] w-full object-cover object-[center_20%] sm:min-h-[340px]"
-            loading="lazy"
-          />
-        </div>
-
-        {/* Columna derecha */}
-        <div className="col-span-3 overflow-hidden rounded-[1.25rem] ring-1 ring-espresso-900/[0.06] sm:col-span-2">
-          <img
-            src={fotos.tablet}
-            alt="Francis Landeo con tablet"
-            className="aspect-[4/5] w-full object-cover object-top"
-            loading="lazy"
-          />
-        </div>
-        <div className="col-span-3 overflow-hidden rounded-[1.25rem] ring-1 ring-espresso-900/[0.06] sm:col-span-2">
-          <img
-            src={fotos.perfil}
-            alt="Francis Landeo, psicóloga clínica"
-            className="aspect-[4/5] w-full object-cover object-[center_15%]"
-            loading="lazy"
-          />
-        </div>
-
-        {/* Fila inferior */}
-        <div className="col-span-3 overflow-hidden rounded-[1.25rem] ring-1 ring-espresso-900/[0.06]">
-          <img
-            src={fotos.sentada}
-            alt="Francis Landeo sentada con libros"
-            className="aspect-square w-full object-cover object-center"
-            loading="lazy"
-          />
-        </div>
-        <div className="col-span-3 overflow-hidden rounded-[1.25rem] ring-1 ring-espresso-900/[0.06] sm:col-span-3">
-          <img
-            src={fotos.retrato}
-            alt="Francis Landeo, retrato profesional"
-            className="aspect-[5/4] w-full object-cover object-[center_20%] sm:aspect-[16/10]"
-            loading="lazy"
-          />
-        </div>
+      <div className="mx-auto flex max-w-2xl gap-2 sm:max-w-3xl sm:gap-2.5">
+        {strip.map((f, i) => (
+          <div
+            key={f.src}
+            className={`relative flex-1 overflow-hidden ring-1 ring-espresso-900/[0.06] ${
+              i === 0 ? 'rounded-l-2xl' : i === strip.length - 1 ? 'rounded-r-2xl' : ''
+            }`}
+          >
+            <img
+              src={f.src}
+              alt={f.alt}
+              className={`h-24 w-full object-cover sm:h-32 ${f.pos}`}
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
     </Reveal>
   )
