@@ -55,9 +55,7 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <Reveal delay={120} className="flex justify-center lg:justify-end">
-            <HeroPhoto />
-          </Reveal>
+          <HeroPhoto className="mx-auto lg:mx-0" />
         </div>
       </section>
 

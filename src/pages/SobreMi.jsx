@@ -1,74 +1,83 @@
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import PhotoCollage from '../components/PhotoCollage'
-import { Eyebrow, Bezel, PillButton, Icon } from '../components/ui'
+import { Eyebrow, PillButton, Icon } from '../components/ui'
 import { credenciales, sobreMi } from '../lib/content'
 
 export default function SobreMi() {
   return (
     <main>
-      {/* Intro + collage lado a lado */}
-      <section className="relative overflow-hidden px-4 pb-10 pt-28 sm:pb-14 sm:pt-32">
-        <div className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-blush-200/40 blur-[90px]" />
+      {/* Intro: texto primero, fotos después en móvil */}
+      <section className="relative px-4 pb-8 pt-28 sm:pb-12 sm:pt-32">
+        <div className="pointer-events-none absolute -right-20 top-8 h-56 w-56 rounded-full bg-blush-100/60 blur-[100px]" />
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <div className="text-center lg:text-left">
-            <Reveal>
-              <Eyebrow tone="sage">
-                <Icon.Sparkle className="h-3 w-3" /> Sobre mí
-              </Eyebrow>
-            </Reveal>
-            <Reveal delay={80}>
-              <h1 className="mt-5 font-serif text-4xl leading-[1.08] tracking-tight text-espresso-900 sm:text-5xl">
-                Hola, soy <em className="font-light text-blush-500">Francis</em>
-              </h1>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-espresso-500 lg:mx-0">
-                Mamá, psicóloga clínica y psicoterapeuta DBT en formación. Acompaño familias desde
-                la experiencia, no desde la perfección.
-              </p>
-            </Reveal>
-          </div>
+        <div className="relative mx-auto max-w-3xl">
+          <Reveal>
+            <Eyebrow tone="sage">
+              <Icon.Sparkle className="h-3 w-3" /> Sobre mí
+            </Eyebrow>
+          </Reveal>
+          <Reveal delay={60}>
+            <h1 className="mt-5 font-serif text-4xl leading-[1.08] tracking-tight text-espresso-900 sm:text-5xl">
+              Hola, soy <em className="font-light text-blush-500">Francis</em>
+            </h1>
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-espresso-500 sm:text-lg">
+              Mamá, psicóloga clínica y psicoterapeuta DBT en formación. Acompaño familias desde
+              la experiencia, no desde la perfección.
+            </p>
+          </Reveal>
 
-          <PhotoCollage className="mx-auto w-full max-w-[360px] lg:mx-0 lg:ml-auto" />
+          <Reveal delay={160}>
+            <PhotoCollage className="mt-8 sm:mt-10" />
+          </Reveal>
         </div>
       </section>
 
-      <section className="px-4 pb-12 sm:pb-16">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2 lg:items-start lg:gap-10">
+      {/* Historia: una columna legible, sin competir con las fotos */}
+      <section className="border-t border-espresso-900/[0.06] px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-2xl space-y-6">
           <Reveal>
-            <blockquote className="relative border-l-[3px] border-blush-400 pl-5 font-serif text-xl italic leading-snug text-espresso-900 sm:text-2xl">
-              Criar no es perfecto, es un proceso vivo. Acompañarlo desde la consciencia lo cambia
-              todo.
+            <blockquote className="font-serif text-xl italic leading-snug text-espresso-900 sm:text-2xl">
+              “Criar no es perfecto, es un proceso vivo. Acompañarlo desde la consciencia lo cambia
+              todo.”
             </blockquote>
-            <p className="mt-5 text-sm leading-relaxed text-espresso-500 sm:text-base">
+          </Reveal>
+          <Reveal delay={60}>
+            <p className="text-base leading-[1.75] text-espresso-500">
               Entendí que la forma en la que acompañamos las emociones de un niño puede cambiar su
               vida entera. Con experiencia en evaluación, observación e intervención infantil comparto
               herramientas, reflexión y aprendizaje real.
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-espresso-500 sm:text-base">
+          </Reveal>
+          <Reveal delay={100}>
+            <p className="text-base leading-[1.75] text-espresso-500">
               Me especializo en terapia DBT, crianza consciente y gestión emocional. Mi enfoque
               combina evidencia científica con la calidez que cada familia necesita.
             </p>
           </Reveal>
+        </div>
+      </section>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+      {/* Formación: lista limpia, sin marcos pesados */}
+      <section className="px-4 pb-12 sm:pb-16">
+        <div className="mx-auto max-w-2xl">
+          <Reveal>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-blush-500">
+              Formación y experiencia
+            </p>
+          </Reveal>
+          <ul className="mt-6 space-y-5">
             {sobreMi.map((item, i) => (
-              <Reveal key={item} delay={i * 60}>
-                <Bezel>
-                  <div className="flex items-start gap-3 rounded-[calc(2rem-0.375rem)] p-4 sm:p-5">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blush-100 text-blush-500">
-                      <Icon.Check className="h-3.5 w-3.5" />
-                    </span>
-                    <p className="text-xs font-medium leading-snug text-espresso-700 sm:text-sm">
-                      {item}
-                    </p>
-                  </div>
-                </Bezel>
+              <Reveal key={item} delay={i * 50} as="li" className="flex gap-4">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blush-100 text-blush-500">
+                  <Icon.Check className="h-3 w-3" />
+                </span>
+                <p className="text-sm leading-relaxed text-espresso-600 sm:text-base">{item}</p>
               </Reveal>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
