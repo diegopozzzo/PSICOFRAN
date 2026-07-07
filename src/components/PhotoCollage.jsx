@@ -40,29 +40,40 @@ export default function PhotoCollage({ className = '' }) {
 }
 
 export function HeroPhoto({ className = '' }) {
+  const cream = '253,248,245'
+
   return (
     <div className={`relative flex justify-center lg:justify-end ${className}`}>
-      {/* Halo difuso detrás */}
-      <img
-        src={fotos.hero}
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute aspect-[4/5] w-full max-w-[340px] scale-110 rounded-[2rem] object-cover object-[center_12%] opacity-45 blur-3xl sm:max-w-[400px]"
-      />
-
       <div className="relative w-full max-w-[340px] sm:max-w-[400px]">
+        {/* Foto nítida — persona visible abajo */}
         <img
           src={fotos.hero}
           alt="Francis Landeo, psicóloga clínica especializada en crianza consciente"
           className="aspect-[4/5] w-full rounded-[1.75rem] object-cover object-[center_12%]"
           loading="eager"
         />
-        {/* Bordes que se funden con el fondo crema */}
+
+        {/* Difuminado solo en la parte superior */}
+        <div
+          className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem]"
+          style={{
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 28%, transparent 52%)',
+            maskImage: 'linear-gradient(to bottom, black 0%, black 28%, transparent 52%)',
+          }}
+        >
+          <img
+            src={fotos.hero}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full scale-105 object-cover object-[center_12%] blur-2xl"
+          />
+        </div>
+
+        {/* Fundido superior hacia el fondo crema */}
         <div
           className="pointer-events-none absolute inset-0 rounded-[1.75rem]"
           style={{
-            background:
-              'linear-gradient(to bottom, transparent 55%, rgba(253,248,245,0.92) 100%), linear-gradient(to right, rgba(253,248,245,0.55) 0%, transparent 14%, transparent 86%, rgba(253,248,245,0.55) 100%)',
+            background: `linear-gradient(to bottom, rgba(${cream},0.95) 0%, rgba(${cream},0.55) 18%, transparent 42%)`,
           }}
         />
       </div>
