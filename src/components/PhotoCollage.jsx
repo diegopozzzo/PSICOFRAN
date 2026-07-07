@@ -41,19 +41,18 @@ export default function PhotoCollage({ className = '' }) {
 
 export function HeroBackground() {
   return (
-    <div className="absolute inset-0" aria-hidden="true">
+    <div className="absolute inset-0 bg-cream" aria-hidden="true">
       <img
         src={fotos.hero}
         alt=""
-        className="h-full w-full object-cover object-[50%_78%] sm:object-[50%_74%] lg:object-[52%_70%]"
+        className="h-full w-full object-contain object-right"
         loading="eager"
       />
       <div
         className="absolute inset-0"
         style={{
           background: `
-            linear-gradient(to right, rgba(253,248,245,0.97) 0%, rgba(253,248,245,0.88) 16%, rgba(253,248,245,0.5) 32%, rgba(253,248,245,0.08) 48%, transparent 62%),
-            linear-gradient(to bottom, rgba(253,248,245,0.35) 0%, transparent 16%, transparent 92%, rgba(253,248,245,0.12) 100%)
+            linear-gradient(to right, rgba(253,248,245,0.99) 0%, rgba(253,248,245,0.94) 26%, rgba(253,248,245,0.62) 40%, rgba(253,248,245,0.15) 52%, transparent 62%)
           `,
         }}
       />
