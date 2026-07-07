@@ -44,38 +44,24 @@ export function HeroPhoto({ className = '' }) {
 
   return (
     <div className={`relative flex w-full justify-center lg:justify-end ${className}`}>
-      <div className="relative w-full max-w-[420px] sm:max-w-[500px] lg:max-w-[560px]">
-        {/* Foto nítida — persona visible abajo */}
+      <div className="relative aspect-[4/5] w-full max-w-[420px] sm:max-w-[500px] lg:max-w-[560px]">
+        {/* Foto difuminada en todo el marco */}
         <img
           src={fotos.hero}
           alt="Francis Landeo, psicóloga clínica especializada en crianza consciente"
-          className="aspect-[4/5] w-full rounded-[1.75rem] object-cover object-[center_12%]"
+          className="absolute inset-0 h-full w-full scale-110 object-cover object-[center_12%] blur-[2.75rem] sm:blur-[3.25rem]"
           loading="eager"
         />
 
-        {/* Difuminado intenso solo en la parte superior */}
+        {/* Fundido en todos los bordes → se integra con el fondo crema */}
         <div
-          className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem]"
+          className="pointer-events-none absolute inset-0"
           style={{
-            WebkitMaskImage:
-              'linear-gradient(to bottom, black 0%, black 38%, rgba(0,0,0,0.6) 48%, transparent 62%)',
-            maskImage:
-              'linear-gradient(to bottom, black 0%, black 38%, rgba(0,0,0,0.6) 48%, transparent 62%)',
-          }}
-        >
-          <img
-            src={fotos.hero}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 h-full w-full scale-110 object-cover object-[center_12%] blur-[3.5rem]"
-          />
-        </div>
-
-        {/* Fundido superior más marcado hacia el fondo crema */}
-        <div
-          className="pointer-events-none absolute inset-0 rounded-[1.75rem]"
-          style={{
-            background: `linear-gradient(to bottom, rgba(${cream},1) 0%, rgba(${cream},0.82) 14%, rgba(${cream},0.45) 28%, transparent 50%)`,
+            background: `
+              radial-gradient(ellipse 90% 88% at 50% 52%, transparent 8%, rgba(${cream},0.35) 42%, rgba(${cream},0.88) 72%, rgba(${cream},1) 100%),
+              linear-gradient(to bottom, rgba(${cream},0.92) 0%, rgba(${cream},0.25) 22%, rgba(${cream},0.15) 55%, rgba(${cream},0.55) 82%, rgba(${cream},0.95) 100%),
+              linear-gradient(to right, rgba(${cream},0.85) 0%, transparent 16%, transparent 84%, rgba(${cream},0.85) 100%)
+            `,
           }}
         />
       </div>
