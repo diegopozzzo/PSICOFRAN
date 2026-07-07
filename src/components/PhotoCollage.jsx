@@ -43,8 +43,8 @@ export function HeroPhoto({ className = '' }) {
   const cream = '253,248,245'
 
   return (
-    <div className={`relative flex justify-center lg:justify-end ${className}`}>
-      <div className="relative w-full max-w-[340px] sm:max-w-[400px]">
+    <div className={`relative flex w-full justify-center lg:justify-end ${className}`}>
+      <div className="relative w-full max-w-[420px] sm:max-w-[500px] lg:max-w-[560px]">
         {/* Foto nítida — persona visible abajo */}
         <img
           src={fotos.hero}
@@ -53,27 +53,29 @@ export function HeroPhoto({ className = '' }) {
           loading="eager"
         />
 
-        {/* Difuminado solo en la parte superior */}
+        {/* Difuminado intenso solo en la parte superior */}
         <div
           className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem]"
           style={{
-            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 28%, transparent 52%)',
-            maskImage: 'linear-gradient(to bottom, black 0%, black 28%, transparent 52%)',
+            WebkitMaskImage:
+              'linear-gradient(to bottom, black 0%, black 38%, rgba(0,0,0,0.6) 48%, transparent 62%)',
+            maskImage:
+              'linear-gradient(to bottom, black 0%, black 38%, rgba(0,0,0,0.6) 48%, transparent 62%)',
           }}
         >
           <img
             src={fotos.hero}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full scale-105 object-cover object-[center_12%] blur-2xl"
+            className="absolute inset-0 h-full w-full scale-110 object-cover object-[center_12%] blur-[3.5rem]"
           />
         </div>
 
-        {/* Fundido superior hacia el fondo crema */}
+        {/* Fundido superior más marcado hacia el fondo crema */}
         <div
           className="pointer-events-none absolute inset-0 rounded-[1.75rem]"
           style={{
-            background: `linear-gradient(to bottom, rgba(${cream},0.95) 0%, rgba(${cream},0.55) 18%, transparent 42%)`,
+            background: `linear-gradient(to bottom, rgba(${cream},1) 0%, rgba(${cream},0.82) 14%, rgba(${cream},0.45) 28%, transparent 50%)`,
           }}
         />
       </div>
