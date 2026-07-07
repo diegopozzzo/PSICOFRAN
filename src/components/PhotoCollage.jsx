@@ -41,9 +41,9 @@ export default function PhotoCollage({ className = '' }) {
 
 export function HeroPhoto({ className = '' }) {
   const cream = '253,248,245'
-  // Máscara: transparente en el centro-inferior (Francis), opaca en el resto
+  // Máscara: nítido solo rostro + libros (centro-inferior)
   const envMask =
-    'radial-gradient(ellipse 88% 68% at 50% 72%, transparent 32%, black 78%)'
+    'radial-gradient(ellipse 78% 58% at 50% 82%, transparent 24%, black 72%)'
 
   return (
     <div className={`relative flex w-full justify-center lg:justify-end ${className}`}>
@@ -65,14 +65,15 @@ export function HeroPhoto({ className = '' }) {
             src={fotos.hero}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full scale-110 object-cover object-[center_12%] blur-[3rem] sm:blur-[3.5rem]"
+            className="absolute inset-0 h-full w-full scale-110 object-cover object-[center_12%] blur-[3.5rem] sm:blur-[4rem]"
           />
           <div
             className="absolute inset-0"
             style={{
               background: `
-                linear-gradient(to bottom, rgba(${cream},0.98) 0%, rgba(${cream},0.55) 22%, transparent 48%),
-                linear-gradient(to right, rgba(${cream},0.75) 0%, transparent 20%, transparent 80%, rgba(${cream},0.75) 100%)
+                linear-gradient(to bottom, rgba(${cream},1) 0%, rgba(${cream},0.75) 28%, rgba(${cream},0.35) 45%, transparent 58%),
+                linear-gradient(to right, rgba(${cream},0.85) 0%, transparent 18%, transparent 82%, rgba(${cream},0.85) 100%),
+                linear-gradient(to left, rgba(${cream},0.55) 0%, transparent 35%)
               `,
             }}
           />
