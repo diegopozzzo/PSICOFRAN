@@ -19,40 +19,60 @@ export default function Home() {
         <div className="pointer-events-none absolute bottom-10 left-[-10%] h-[22rem] w-[22rem] rounded-full bg-blush-100 blur-[90px]" />
 
         <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="text-center lg:text-left">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-[11px] font-semibold tracking-wide text-blush-600 shadow-sm ring-1 ring-blush-200/80 backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-blush-500" />
-                Psicóloga clínica · Lima, Perú
-              </span>
-            </Reveal>
-            <Reveal delay={80}>
-              <h1 className="mt-5 font-serif text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1.06] tracking-tight text-espresso-900 sm:mt-6">
-                Criar con{' '}
-                <em className="font-light text-blush-500">consciencia,</em>
-                <br />
-                vivir en calma.
-              </h1>
-            </Reveal>
+          <div className="relative text-center lg:text-left">
+            <div className="relative z-10">
+              <Reveal>
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-[11px] font-semibold tracking-wide text-blush-600 shadow-sm ring-1 ring-blush-200/80 backdrop-blur-sm">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-blush-500" />
+                  Psicóloga clínica · Lima, Perú
+                </span>
+              </Reveal>
+              <Reveal delay={80}>
+                <h1 className="mt-5 font-serif text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1.06] tracking-tight text-espresso-900 sm:mt-6">
+                  Criar con{' '}
+                  <em className="font-light text-blush-500">consciencia,</em>
+                  <br />
+                  vivir en calma.
+                </h1>
+              </Reveal>
 
-            {/* CTA más arriba, justo después del título */}
-            <Reveal delay={140}>
-              <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
-                <Link to="/reservar">
-                  <PillButton variant="blush">Agendar mi cita</PillButton>
-                </Link>
-                <Link to="/servicios">
-                  <PillButton variant="ghost">Conocer servicios</PillButton>
-                </Link>
-              </div>
-            </Reveal>
+              <Reveal delay={140}>
+                <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
+                  <Link to="/reservar">
+                    <PillButton variant="blush">Agendar mi cita</PillButton>
+                  </Link>
+                  <Link to="/servicios">
+                    <PillButton variant="ghost">Conocer servicios</PillButton>
+                  </Link>
+                </div>
+              </Reveal>
 
-            <Reveal delay={220}>
-              <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-espresso-500 sm:text-lg lg:mx-0">
-                Soy Francis Landeo. Te acompaño en la crianza con herramientas reales, calidez y un
-                enfoque basado en evidencia.
-              </p>
-            </Reveal>
+              <Reveal delay={220}>
+                <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-espresso-500 sm:text-lg lg:mx-0">
+                  Soy Francis Landeo. Te acompaño en la crianza con herramientas reales, calidez y un
+                  enfoque basado en evidencia.
+                </p>
+              </Reveal>
+            </div>
+
+            {/* Difuminado del texto — se funde hacia la foto y los bordes */}
+            <div
+              className="pointer-events-none absolute -inset-x-6 -inset-y-8 z-20 hidden lg:block"
+              style={{
+                background: `
+                  linear-gradient(to right, transparent 0%, transparent 52%, rgba(253,248,245,0.35) 78%, rgba(253,248,245,0.92) 100%),
+                  linear-gradient(to bottom, rgba(253,248,245,0.85) 0%, transparent 16%, transparent 84%, rgba(253,248,245,0.55) 100%)
+                `,
+              }}
+            />
+            <div
+              className="pointer-events-none absolute -inset-x-8 -inset-y-6 z-20 lg:hidden"
+              style={{
+                background: `
+                  linear-gradient(to bottom, rgba(253,248,245,0.9) 0%, transparent 14%, transparent 86%, rgba(253,248,245,0.65) 100%)
+                `,
+              }}
+            />
           </div>
 
           <HeroPhoto className="mx-auto lg:mx-0" />
