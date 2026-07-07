@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main className="overflow-x-clip">
       {/* Hero — foto a pantalla completa con texto encima */}
-      <section className="relative flex min-h-[88vh] items-center overflow-hidden sm:min-h-[92vh]">
+      <section className="relative flex min-h-[88vh] items-start overflow-hidden sm:min-h-[92vh] lg:items-center">
         <HeroBackground />
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-20 pt-28 sm:pb-24 sm:pt-32">
