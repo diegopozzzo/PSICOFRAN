@@ -39,46 +39,24 @@ export default function PhotoCollage({ className = '' }) {
   )
 }
 
-export function HeroPhoto({ className = '' }) {
-  const cream = '253,248,245'
-  // Máscara: nítido solo rostro + libros (centro-inferior)
-  const envMask =
-    'radial-gradient(ellipse 78% 58% at 50% 82%, transparent 24%, black 72%)'
-
+export function HeroBackground() {
   return (
-    <div className={`relative flex w-full justify-center lg:justify-end ${className}`}>
-      <div className="relative aspect-[4/5] w-full max-w-[420px] sm:max-w-[500px] lg:max-w-[560px]">
-        {/* Foto nítida — persona y libros sin difuminar */}
-        <img
-          src={fotos.hero}
-          alt="Francis Landeo, psicóloga clínica especializada en crianza consciente"
-          className="relative z-10 h-full w-full rounded-[1.75rem] object-cover object-[center_12%]"
-          loading="eager"
-        />
-
-        {/* Difuminado solo del entorno (techo, paredes, bordes) */}
-        <div
-          className="pointer-events-none absolute inset-0 z-20 overflow-hidden rounded-[1.75rem]"
-          style={{ WebkitMaskImage: envMask, maskImage: envMask }}
-        >
-          <img
-            src={fotos.hero}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 h-full w-full scale-110 object-cover object-[center_12%] blur-[3.5rem] sm:blur-[4rem]"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `
-                linear-gradient(to bottom, rgba(${cream},1) 0%, rgba(${cream},0.75) 28%, rgba(${cream},0.35) 45%, transparent 58%),
-                linear-gradient(to right, rgba(${cream},0.85) 0%, transparent 18%, transparent 82%, rgba(${cream},0.85) 100%),
-                linear-gradient(to left, rgba(${cream},0.55) 0%, transparent 35%)
-              `,
-            }}
-          />
-        </div>
-      </div>
+    <div className="absolute inset-0" aria-hidden="true">
+      <img
+        src={fotos.hero}
+        alt=""
+        className="h-full w-full object-cover object-[center_40%] lg:object-[58%_30%]"
+        loading="eager"
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `
+            linear-gradient(to right, rgba(253,248,245,0.98) 0%, rgba(253,248,245,0.94) 22%, rgba(253,248,245,0.72) 42%, rgba(253,248,245,0.25) 62%, transparent 82%),
+            linear-gradient(to bottom, rgba(253,248,245,0.55) 0%, transparent 22%, transparent 78%, rgba(253,248,245,0.45) 100%)
+          `,
+        }}
+      />
     </div>
   )
 }

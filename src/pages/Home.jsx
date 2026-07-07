@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
-import { HeroPhoto } from '../components/PhotoCollage'
+import { HeroBackground } from '../components/PhotoCollage'
 import { Eyebrow, Bezel, PillButton, Icon } from '../components/ui'
 import { useDb, fmtFecha, fmtHora } from '../lib/store'
 import { exploreCards } from '../lib/content'
@@ -13,21 +13,20 @@ export default function Home() {
 
   return (
     <main className="overflow-x-clip">
-      {/* Hero con foto */}
-      <section className="relative px-4 pb-12 pt-24 sm:pb-16 sm:pt-28">
-        <div className="pointer-events-none absolute -top-24 right-[-8%] h-[28rem] w-[28rem] rounded-full bg-blush-300/35 blur-[110px]" />
-        <div className="pointer-events-none absolute bottom-10 left-[-10%] h-[22rem] w-[22rem] rounded-full bg-blush-100 blur-[90px]" />
+      {/* Hero — foto a pantalla completa con texto encima */}
+      <section className="relative flex min-h-[88vh] items-center overflow-hidden sm:min-h-[92vh]">
+        <HeroBackground />
 
-        <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="relative z-10 text-center lg:text-left">
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-20 pt-28 sm:pb-24 sm:pt-32">
+          <div className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-lg lg:text-left">
             <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-[11px] font-semibold tracking-wide text-blush-600 shadow-sm ring-1 ring-blush-200/80 backdrop-blur-sm">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-[11px] font-semibold tracking-wide text-blush-600 shadow-sm ring-1 ring-white/80 backdrop-blur-md">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-blush-500" />
                 Psicóloga clínica · Lima, Perú
               </span>
             </Reveal>
             <Reveal delay={80}>
-              <h1 className="mt-5 font-serif text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1.06] tracking-tight text-espresso-900 sm:mt-6">
+              <h1 className="mt-5 font-serif text-[clamp(2.25rem,5.5vw,4.25rem)] leading-[1.06] tracking-tight text-espresso-900 sm:mt-6">
                 Criar con{' '}
                 <em className="font-light text-blush-500">consciencia,</em>
                 <br />
@@ -36,41 +35,25 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={140}>
-              <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
+              <div className="mt-7 flex flex-wrap justify-center gap-3 lg:justify-start">
                 <Link to="/reservar">
                   <PillButton variant="blush">Agendar mi cita</PillButton>
                 </Link>
                 <Link to="/servicios">
-                  <PillButton variant="ghost">Conocer servicios</PillButton>
+                  <PillButton variant="ghost" className="bg-white/90 shadow-sm backdrop-blur-md">
+                    Conocer servicios
+                  </PillButton>
                 </Link>
               </div>
             </Reveal>
 
             <Reveal delay={220}>
-              <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-espresso-500 sm:text-lg lg:mx-0">
+              <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-espresso-600 sm:text-lg lg:mx-0">
                 Soy Francis Landeo. Te acompaño en la crianza con herramientas reales, calidez y un
                 enfoque basado en evidencia.
               </p>
             </Reveal>
           </div>
-
-          <HeroPhoto className="relative z-10 mx-auto lg:mx-0" />
-
-          {/* Zona marcada: texto completo + parte superior de la foto */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -inset-x-8 -top-14 bottom-[24%] z-20 backdrop-blur-[16px] sm:backdrop-blur-[20px] lg:-inset-x-12 lg:bottom-[28%]"
-            style={{
-              WebkitMaskImage:
-                'radial-gradient(ellipse 135% 105% at 34% 6%, black 0%, rgba(0,0,0,0.95) 36%, rgba(0,0,0,0.72) 54%, rgba(0,0,0,0.35) 68%, transparent 78%)',
-              maskImage:
-                'radial-gradient(ellipse 135% 105% at 34% 6%, black 0%, rgba(0,0,0,0.95) 36%, rgba(0,0,0,0.72) 54%, rgba(0,0,0,0.35) 68%, transparent 78%)',
-              background: `
-                linear-gradient(to bottom, rgba(253,248,245,0.98) 0%, rgba(253,248,245,0.9) 20%, rgba(253,248,245,0.72) 42%, rgba(253,248,245,0.38) 62%, transparent 88%),
-                linear-gradient(to right, rgba(253,248,245,0.65) 0%, rgba(253,248,245,0.92) 38%, rgba(253,248,245,0.55) 72%, rgba(253,248,245,0.25) 100%)
-              `,
-            }}
-          />
         </div>
       </section>
 
