@@ -15,12 +15,12 @@ export default function Home() {
     <main className="overflow-x-clip">
       {/* Hero — marco contenido: foto + texto dentro del área visible */}
       <section className="px-4 pb-6 pt-24 sm:pb-8 sm:pt-28">
-        <div className="relative mx-auto flex min-h-[min(78vh,820px)] max-w-6xl items-center overflow-hidden rounded-[1.75rem] sm:min-h-[min(82vh,860px)] sm:rounded-[2rem]">
+        <div className="relative mx-auto min-h-[min(78vh,820px)] max-w-6xl overflow-hidden rounded-[1.75rem] sm:min-h-[min(82vh,860px)] sm:rounded-[2rem]">
           <HeroBackground />
 
-          <div className="relative z-10 w-full px-6 py-10 sm:px-10 sm:py-12 lg:px-12">
+          <div className="relative z-10 flex h-full min-h-[inherit] items-center px-6 py-10 sm:px-10 sm:py-12 lg:px-12">
             <div className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-md lg:text-left xl:max-w-lg">
-            <Reveal>
+              <Reveal>
               <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-[11px] font-semibold tracking-wide text-blush-600 shadow-sm ring-1 ring-white/80 backdrop-blur-md">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-blush-500" />
                 Psicóloga clínica · Lima, Perú
