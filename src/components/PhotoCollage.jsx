@@ -41,19 +41,18 @@ export default function PhotoCollage({ className = '' }) {
 
 export function HeroBackground() {
   return (
-    <div className="absolute inset-0" aria-hidden="true">
+    <div className="pointer-events-none absolute inset-0 bg-cream" aria-hidden="true">
       <img
         src={fotos.hero}
         alt=""
-        className="h-full w-full object-cover object-[50%_70%] sm:object-[52%_68%]"
+        className="mx-auto block h-[min(88vh,880px)] w-auto max-w-full object-contain sm:ml-auto sm:mr-0 lg:max-w-[min(100%,820px)]"
         loading="eager"
       />
-      {/* Velo suave solo donde va el texto — la foto se ve debajo */}
       <div
         className="absolute inset-0"
         style={{
           background: `
-            linear-gradient(to right, rgba(253,248,245,0.88) 0%, rgba(253,248,245,0.72) 20%, rgba(253,248,245,0.35) 38%, transparent 58%)
+            linear-gradient(to right, rgba(253,248,245,0.9) 0%, rgba(253,248,245,0.72) 18%, rgba(253,248,245,0.32) 36%, transparent 52%)
           `,
         }}
       />
