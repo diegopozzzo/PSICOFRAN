@@ -13,14 +13,13 @@ export default function Home() {
 
   return (
     <main className="overflow-x-clip">
-      {/* Hero — foto completa de fondo, texto encima */}
-      <section className="relative bg-cream pt-24 sm:pt-28">
-        <div className="relative mx-auto min-h-[min(92vh,920px)] w-full max-w-[1600px]">
-          <HeroBackground />
+      {/* Hero — foto de fondo a pantalla completa, texto encima */}
+      <section className="relative min-h-[85vh] w-full overflow-hidden pt-24 sm:min-h-[90vh] sm:pt-28">
+        <HeroBackground />
 
-          <div className="relative z-10 flex min-h-[min(92vh,920px)] items-center px-6 py-12 sm:px-10 lg:px-14">
-            <div className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-md lg:text-left xl:max-w-lg">
-              <Reveal>
+        <div className="relative z-10 mx-auto flex min-h-[calc(85vh-6rem)] max-w-6xl items-center px-6 py-12 sm:min-h-[calc(90vh-7rem)] lg:px-12">
+          <div className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-md lg:text-left xl:max-w-lg">
+            <Reveal>
               <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-[11px] font-semibold tracking-wide text-blush-600 shadow-sm ring-1 ring-white/80 backdrop-blur-md">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-blush-500" />
                 Psicóloga clínica · Lima, Perú
@@ -54,7 +53,6 @@ export default function Home() {
                 enfoque basado en evidencia.
               </p>
             </Reveal>
-            </div>
           </div>
         </div>
       </section>
